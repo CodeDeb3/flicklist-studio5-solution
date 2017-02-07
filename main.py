@@ -114,6 +114,12 @@ class MovieRatings(webapp2.RequestHandler):
 # Make a template called rating-confirmation.html
 # It should show a confirmation message like:
 #    "You gave Lord of the Rings a rating of ****"
+    def post(self):
+        rating = self.request.get('grade')
+        movie = self.request.get('movie')
+        t=jinja_env.get_template("rating-confirmation.html")
+        content = t.render( rating = rating, movie = movie )
+        self.response.write(content)
 
 
 
